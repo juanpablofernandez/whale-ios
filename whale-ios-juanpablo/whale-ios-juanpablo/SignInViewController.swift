@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
     
@@ -18,6 +19,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         button.layer.borderColor = UIColor.blue.cgColor
         button.setTitleColor(UIColor.blue, for: .normal)
         button.backgroundColor = UIColor.white
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
     
@@ -35,7 +37,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     var usernameTextField: UITextField = {
         let field = UITextField()
         field.placeholder = "Username"
-        field.textColor = UIColor.blue
+        field.textColor = UIColor.gray
         field.backgroundColor = UIColor.white
         return field
     }()
@@ -43,13 +45,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     var passwordTextField: UITextField = {
         let field = UITextField()
         field.placeholder = "Password"
-        field.textColor = UIColor.blue
+        field.textColor = UIColor.gray
         field.backgroundColor = UIColor.white
         return field
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         let tap = UITapGestureRecognizer(target: self, action: #selector(returnTextField))
         view.addGestureRecognizer(tap)
         viewSetup()
@@ -92,6 +95,39 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         usernameTextField.widthAnchor.constraint(equalToConstant: 200).isActive = true
         usernameTextField.bottomAnchor.constraint(equalTo: separatorLine.topAnchor, constant: 0).isActive = true
+    }
+    
+    func handleLogin() {
+        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
+        login(username: username, password: password)
+    }
+    
+    func login(username: String, password: String) {
+        let params: [String: String] = [
+            "username": username,
+            "password": password
+        ]
+        
+        Alamofire.request("https://whale2-elixir.herokuapp.com/api/v1/sessions", method: .post, parameters: params).responseJSON { (response) in
+            
+            if let auth = response.response?.allHeaderFields["Authorization"] as? String {
+                if let json = response.result.value as? [String: Any] {
+                    User.sharedInstance.imageUrl = json["image_url"] as? String
+                    User.sharedInstance.firstName = json["first_name"] as? String
+                    User.sharedInstance.lastName = json["last_name"] as? String
+                    User.sharedInstance.id = json["id"] as? String
+                    User.sharedInstance.email = json["email"] as? String
+                    User.sharedInstance.followerCount = json["follower_count"] as? Int
+                    User.sharedInstance.followingCount = json["following_count"] as? Int
+                    User.sharedInstance.username = json["username"] as? String
+                    print("JSON: \(json)")
+                    print(auth)
+                    User.sharedInstance.authToken = auth
+                    User.sharedInstance.isLoggedIn = true
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func returnTextField() {
