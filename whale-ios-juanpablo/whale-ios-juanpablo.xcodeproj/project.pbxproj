@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		699AD6221E8047C500536BC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699AD6211E8047C500536BC9 /* AppDelegate.swift */; };
-		699AD6241E8047C500536BC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699AD6231E8047C500536BC9 /* ViewController.swift */; };
 		699AD6271E8047C600536BC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699AD6251E8047C600536BC9 /* Main.storyboard */; };
 		699AD6291E8047C600536BC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 699AD6281E8047C600536BC9 /* Assets.xcassets */; };
 		699AD62C1E8047C600536BC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 699AD62A1E8047C600536BC9 /* LaunchScreen.storyboard */; };
+		699AD6381E804F9B00536BC9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699AD6371E804F9B00536BC9 /* SignInViewController.swift */; };
+		699AD63A1E8050B100536BC9 /* SignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699AD6391E8050B100536BC9 /* SignInButton.swift */; };
+		699AD63C1E8050DF00536BC9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699AD63B1E8050DF00536BC9 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		699AD61E1E8047C500536BC9 /* whale-ios-juanpablo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "whale-ios-juanpablo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		699AD6211E8047C500536BC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		699AD6231E8047C500536BC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		699AD6261E8047C600536BC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		699AD6281E8047C600536BC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		699AD62B1E8047C600536BC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		699AD62D1E8047C600536BC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		699AD6371E804F9B00536BC9 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		699AD6391E8050B100536BC9 /* SignInButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInButton.swift; sourceTree = "<group>"; };
+		699AD63B1E8050DF00536BC9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +59,47 @@
 			isa = PBXGroup;
 			children = (
 				699AD6211E8047C500536BC9 /* AppDelegate.swift */,
-				699AD6231E8047C500536BC9 /* ViewController.swift */,
-				699AD6251E8047C600536BC9 /* Main.storyboard */,
+				699AD6331E80496100536BC9 /* Extensions */,
+				699AD6341E80496F00536BC9 /* UI */,
+				699AD6351E80499300536BC9 /* Networking */,
+				699AD6361E804F7000536BC9 /* Controllers */,
 				699AD6281E8047C600536BC9 /* Assets.xcassets */,
 				699AD62A1E8047C600536BC9 /* LaunchScreen.storyboard */,
 				699AD62D1E8047C600536BC9 /* Info.plist */,
+				699AD6391E8050B100536BC9 /* SignInButton.swift */,
 			);
 			path = "whale-ios-juanpablo";
+			sourceTree = "<group>";
+		};
+		699AD6331E80496100536BC9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				699AD63B1E8050DF00536BC9 /* Extensions.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		699AD6341E80496F00536BC9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				699AD6251E8047C600536BC9 /* Main.storyboard */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		699AD6351E80499300536BC9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		699AD6361E804F7000536BC9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				699AD6371E804F9B00536BC9 /* SignInViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +175,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				699AD6241E8047C500536BC9 /* ViewController.swift in Sources */,
+				699AD6381E804F9B00536BC9 /* SignInViewController.swift in Sources */,
 				699AD6221E8047C500536BC9 /* AppDelegate.swift in Sources */,
+				699AD63A1E8050B100536BC9 /* SignInButton.swift in Sources */,
+				699AD63C1E8050DF00536BC9 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
